@@ -1,7 +1,9 @@
+import { SpaceAuth } from 'src/spaceauth/entity/spaceauth.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -22,4 +24,7 @@ export class Space {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(() => SpaceAuth, (spaceAuth) => spaceAuth.spaceId)
+  spaceAuth: SpaceAuth[];
 }
