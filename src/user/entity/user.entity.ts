@@ -1,3 +1,4 @@
+import { Comment } from 'src/comment/entity/comment.entity';
 import { Issue } from 'src/issue/entity/issue.entity';
 import { SpaceAuth } from 'src/spaceauth/entity/spaceauth.entity';
 import {
@@ -36,4 +37,7 @@ export class User {
     cascade: true,
   })
   issue: Issue[];
+
+  @OneToMany(() => Comment, (comment) => comment.user, { cascade: true })
+  comment: Comment[];
 }

@@ -4,6 +4,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -12,6 +13,7 @@ import { Progress } from '../enum/progress.enum';
 import { Size } from '../enum/size.enum';
 import { User } from 'src/user/entity/user.entity';
 import { Space } from 'src/space/entity/space.entity';
+import { Comment } from 'src/comment/entity/comment.entity';
 
 @Entity()
 export class Issue {
@@ -58,4 +60,7 @@ export class Issue {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(() => Comment, (comment) => comment.issue)
+  comment: Comment[];
 }
