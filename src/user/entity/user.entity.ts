@@ -1,3 +1,4 @@
+import { Issue } from 'src/issue/entity/issue.entity';
 import { SpaceAuth } from 'src/spaceauth/entity/spaceauth.entity';
 import {
   Column,
@@ -30,4 +31,9 @@ export class User {
 
   @OneToMany(() => SpaceAuth, (spaceAuth) => spaceAuth.userId)
   spaceAuth: SpaceAuth[];
+
+  @OneToMany(() => Issue, (issue) => issue.user, {
+    cascade: true,
+  })
+  issue: Issue[];
 }
