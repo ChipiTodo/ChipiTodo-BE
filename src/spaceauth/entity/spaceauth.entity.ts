@@ -19,11 +19,11 @@ export class SpaceAuth {
   @PrimaryColumn()
   spaceId: number;
 
-  @ManyToOne(() => User, (user) => user.spaceAuth)
+  @ManyToOne(() => User, (user) => user.spaceAuth, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
   user: User;
 
-  @ManyToOne(() => Space, (space) => space.spaceAuth)
+  @ManyToOne(() => Space, (space) => space.spaceAuth, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'spaceId', referencedColumnName: 'id' })
   space: Space;
 

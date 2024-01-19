@@ -29,7 +29,7 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => SpaceAuth, (spaceAuth) => spaceAuth.user)
+  @OneToMany(() => SpaceAuth, (spaceAuth) => spaceAuth.user, { cascade: true })
   spaceAuth: SpaceAuth[];
 
   @OneToMany(() => Issue, (issue) => issue.user, {
