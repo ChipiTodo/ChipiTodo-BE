@@ -13,15 +13,19 @@ import { SpaceRole } from '../enum/spacerole.enum';
 
 @Entity()
 export class SpaceAuth {
-  @ManyToOne(() => User, (user) => user.spaceAuth)
   @PrimaryColumn('uuid')
-  @JoinColumn()
-  userId: User;
+  userId: string;
+
+  @PrimaryColumn()
+  spaceId: number;
+
+  @ManyToOne(() => User, (user) => user.spaceAuth)
+  @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
+  user: User;
 
   @ManyToOne(() => Space, (space) => space.spaceAuth)
-  @PrimaryColumn('integer')
-  @JoinColumn()
-  spaceId: Space;
+  @JoinColumn({ name: 'spaceId', referencedColumnName: 'id' })
+  space: Space;
 
   @Column({ type: 'enum', enum: SpaceRole })
   role: SpaceRole;

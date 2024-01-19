@@ -26,7 +26,7 @@ export class Space {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => SpaceAuth, (spaceAuth) => spaceAuth.spaceId)
+  @OneToMany(() => SpaceAuth, (spaceAuth) => spaceAuth.space)
   spaceAuth: SpaceAuth[];
 
   @OneToMany(() => Issue, (issue) => issue.space, { cascade: true })
