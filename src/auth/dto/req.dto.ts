@@ -1,7 +1,8 @@
 class SignupReqDto {
   email: string;
   password: string;
-  comfi;
+  confirmPassword: string;
+  nickname: string;
 }
 
 export { SignupReqDto };
