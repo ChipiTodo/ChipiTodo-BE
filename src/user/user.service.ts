@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entity/user.entity';
 import { Repository } from 'typeorm';
+import { SignupDto } from 'src/auth/dto/transfer.dto';
 
 @Injectable()
 export class UserService {
@@ -14,9 +15,16 @@ export class UserService {
    * @param email 기본적인 email
    * @returns {User}
    */
-  async findByEmail(email: string): Promise<User> {
+  async findUserByEmail(email: string): Promise<User> {
     return await this.userRepository.findOne({ where: { email } });
   }
 
-  async createUser(): Promise<void> {}
+  /**
+   * 회원가입을 위한 Methods
+   * @param SignupDto
+   */
+  async createUser({ email, password, nickname }: SignupDto): Promise<void> {
+    const user = this.userRepository.create({ email, password, nickname });
+    await this.userRepository.save(user);
+  }
 }
