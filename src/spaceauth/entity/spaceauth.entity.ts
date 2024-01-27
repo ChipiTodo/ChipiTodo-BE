@@ -1,18 +1,11 @@
 import { Space } from 'src/space/entity/space.entity';
 import { User } from 'src/user/entity/user.entity';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { SpaceRole } from '../enum/spacerole.enum';
+import { BaseModel } from 'src/common/model/basemodel';
 
 @Entity()
-export class SpaceAuth {
+export class SpaceAuth extends BaseModel {
   @PrimaryColumn('uuid')
   userId: string;
 
@@ -29,10 +22,4 @@ export class SpaceAuth {
 
   @Column({ type: 'enum', enum: SpaceRole })
   role: SpaceRole;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }
