@@ -8,17 +8,27 @@ import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
 import { SignupDto } from './dto/transfer.dto';
 import { User } from 'src/user/entity/user.entity';
+import { JwtService } from '@nestjs/jwt';
+import { LoginResDto } from './dto/res.dto';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userService: UserService,
     private configService: ConfigService,
+    private jwtService: JwtService,
   ) {}
 
-  async login(email: string, password: string) {
+  async login(email: string, password: string): Promise<LoginResDto> {
     const user = await this.validate(email, password);
-    const accessToken = 
+    const payload = {
+      iss: 'ChipiTodo',
+      sub: 'chipiCalender',
+      'https://ChipiTodo.com/jwt_claim/is_user': true,
+      userId: user.id,
+    };
+    const accessToken = this.jwtService.sign(payload, { expiresIn: '3h' });
+    return { accessToken };
   }
 
   async validate(email: string, password: string): Promise<User> {

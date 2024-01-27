@@ -9,12 +9,13 @@ import { Space } from './space/entity/space.entity';
 import { SpaceAuth } from './spaceauth/entity/spaceauth.entity';
 import { Issue } from './issue/entity/issue.entity';
 import { Comment } from './comment/entity/comment.entity';
+import jwtConfig from './config/jwt.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [ormConfig],
+      load: [ormConfig, jwtConfig],
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
