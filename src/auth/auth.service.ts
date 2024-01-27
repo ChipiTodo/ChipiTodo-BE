@@ -19,6 +19,12 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  /**
+   * 로그인 시 JWT Token을 반환
+   * @param email
+   * @param password
+   * @returns
+   */
   async login(email: string, password: string): Promise<LoginResDto> {
     const user = await this.validate(email, password);
     const payload = {
@@ -31,6 +37,12 @@ export class AuthService {
     return { accessToken };
   }
 
+  /**
+   * 유저 검증용 Method
+   * @param email
+   * @param password
+   * @returns
+   */
   async validate(email: string, password: string): Promise<User> {
     const user = await this.userService.findUserByEmail(email);
     if (!user)
@@ -43,6 +55,10 @@ export class AuthService {
     return user;
   }
 
+  /**
+   * 회원가입을 위한 메서드
+   * @param SignupDto
+   */
   async signup({ email, password, nickname }: SignupDto) {
     // 1. 동일한 email이 있는지 확인한다.
     const user = await this.userService.findUserByEmail(email);
