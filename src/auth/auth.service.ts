@@ -33,7 +33,8 @@ export class AuthService {
 
   async validate(email: string, password: string): Promise<User> {
     const user = await this.userService.findUserByEmail(email);
-    if (!user) throw new UnauthorizedException('해당하는 유저가 없습니다.');
+    if (!user)
+      throw new UnauthorizedException('이메일 혹은 비밀번호를 확인하세요.');
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
