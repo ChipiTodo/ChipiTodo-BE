@@ -19,4 +19,12 @@ class SignupReqDto {
   nickname: string;
 }
 
-export { SignupReqDto };
+class LoginReqDto {
+  @IsEmail()
+  email: string;
+
+  @IsNotEmpty()
+  password: string;
+}
+
+export { SignupReqDto, LoginReqDto };
