@@ -1,17 +1,11 @@
 import { Comment } from 'src/comment/entity/comment.entity';
+import { BaseModel } from 'src/common/model/basemodel';
 import { Issue } from 'src/issue/entity/issue.entity';
 import { SpaceAuth } from 'src/spaceauth/entity/spaceauth.entity';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User {
+export class User extends BaseModel {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -23,12 +17,6 @@ export class User {
 
   @Column()
   nickname: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 
   @OneToMany(() => SpaceAuth, (spaceAuth) => spaceAuth.user, {
     cascade: true,
