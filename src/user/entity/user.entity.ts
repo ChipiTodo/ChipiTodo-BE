@@ -10,7 +10,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'user' })
+@Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -30,7 +30,9 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => SpaceAuth, (spaceAuth) => spaceAuth.user, { cascade: true })
+  @OneToMany(() => SpaceAuth, (spaceAuth) => spaceAuth.user, {
+    cascade: true,
+  })
   spaceAuth: SpaceAuth[];
 
   @OneToMany(() => Issue, (issue) => issue.user, {
