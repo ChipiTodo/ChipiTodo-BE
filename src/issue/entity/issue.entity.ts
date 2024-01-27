@@ -52,9 +52,6 @@ export class Issue extends BaseModel {
   @Column({ type: 'enum', enum: Size, nullable: true })
   size?: Size;
 
-  @Column({ type: 'boolean' })
-  complete: boolean;
-
   @Column({ type: 'text', nullable: true })
   content?: string;
 
