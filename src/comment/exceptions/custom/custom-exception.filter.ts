@@ -37,6 +37,7 @@ export class CustomExceptionFilter implements ExceptionFilter {
         timestamp: new Date().toISOString(),
         path: request.url,
         error,
+        statusCode: status,
       });
     } else {
       response.status(status).json({
@@ -47,6 +48,7 @@ export class CustomExceptionFilter implements ExceptionFilter {
         },
         timestamp: new Date().toISOString(),
         ...error,
+        statusCode: status,
       });
     }
   }
