@@ -9,6 +9,7 @@ import { Space } from './space/entity/space.entity';
 import { SpaceAuth } from './spaceauth/entity/spaceauth.entity';
 import { Issue } from './issue/entity/issue.entity';
 import { Comment } from './comment/entity/comment.entity';
+import { SpaceModule } from './space/space.module';
 import jwtConfig from './config/jwt.config';
 
 @Module({
@@ -35,6 +36,7 @@ import jwtConfig from './config/jwt.config';
     }),
     UserModule,
     AuthModule,
+    SpaceModule,
   ],
 })
 export class AppModule {}
