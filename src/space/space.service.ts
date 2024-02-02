@@ -20,4 +20,10 @@ export class SpaceService {
 
     return space;
   }
+
+  async getAllSpace(): Promise<Space[]> | null {
+    const spaces = await this.spaceRepository.find();
+
+    return spaces;
+  }
 }

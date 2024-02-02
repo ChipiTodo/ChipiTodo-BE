@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { SpaceService } from './space.service';
-import { SpaceController } from './space.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Space } from './entity/space.entity';
+import { SpaceController } from './space.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Space])],

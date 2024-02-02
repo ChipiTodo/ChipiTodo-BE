@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Get } from '@nestjs/common';
 import { SpaceService } from './space.service';
 import { SpaceRequestDto } from './dto/space-request.dto';
 import { Space } from './entity/space.entity';
@@ -10,5 +10,10 @@ export class SpaceController {
   @Post()
   async createSpace(@Body() spaceRequestDto: SpaceRequestDto): Promise<Space> {
     return this.spaceService.createSpace(spaceRequestDto);
+  }
+
+  @Get()
+  async getAllSpace(): Promise<Space[]> | null {
+    return await this.spaceService.getAllSpace();
   }
 }
