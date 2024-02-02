@@ -16,7 +16,7 @@ export class SpaceController {
   constructor(private readonly spaceService: SpaceService) {}
 
   @Post()
-  async createSpace(@Body() spaceRequestDto: SpaceRequestDto): Promise<Space> {
+  async createSpace(@Body() spaceRequestDto: SpaceRequestDto): Promise<Object> {
     return this.spaceService.createSpace(spaceRequestDto);
   }
 

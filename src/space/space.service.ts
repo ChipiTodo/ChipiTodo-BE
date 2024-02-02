@@ -11,14 +11,14 @@ export class SpaceService {
     private readonly spaceRepository: Repository<Space>,
   ) {}
 
-  async createSpace(body: SpaceRequestDto): Promise<Space> {
+  async createSpace(body: SpaceRequestDto): Promise<Object> {
     const { name, description } = body;
 
     const space = await this.spaceRepository.create({ name, description });
 
     await this.spaceRepository.save(space);
 
-    return space;
+    return { statusCode: 201, message: '생성 완료!' };
   }
 
   async getAllSpace(): Promise<Space[]> | null {
