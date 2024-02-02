@@ -6,6 +6,7 @@ import {
   Put,
   Param,
   ParseIntPipe,
+  Delete,
 } from '@nestjs/common';
 import { SpaceService } from './space.service';
 import { SpaceRequestDto } from './dto/space-request.dto';
@@ -31,5 +32,11 @@ export class SpaceController {
     @Body() spaceRequestDto: SpaceRequestDto,
   ): Promise<Object> {
     return this.spaceService.updateSpace(id, spaceRequestDto);
+  }
+
+  // admin 만 삭제 가능하도록 수정 필요.
+  @Delete(':id')
+  async deleteSpace(@Param('id', ParseIntPipe) id: number): Promise<Object> {
+    return this.spaceService.deleteSpace(id);
   }
 }

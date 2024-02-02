@@ -52,4 +52,20 @@ export class SpaceService {
 
     return { statusCode: 200, message: '수정 완료!' };
   }
+
+  async deleteSpace(id: number): Promise<Object> {
+    const space = await this.spaceRepository.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!space) {
+      throw new NotFoundException();
+    }
+
+    await this.spaceRepository.delete(id);
+
+    return { statusCode: 200, message: '삭제 완료' };
+  }
 }
