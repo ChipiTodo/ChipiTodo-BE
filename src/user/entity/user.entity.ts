@@ -21,13 +21,13 @@ export class User extends BaseModel {
   @OneToMany(() => SpaceAuth, (spaceAuth) => spaceAuth.user, {
     cascade: true,
   })
-  spaceAuth: SpaceAuth[];
+  spaceAuth?: SpaceAuth[];
 
   @OneToMany(() => Issue, (issue) => issue.user, {
     cascade: true,
   })
-  issue: Issue[];
+  issue?: Issue[];
 
   @OneToMany(() => Comment, (comment) => comment.user, { cascade: true })
-  comment: Comment[];
+  comment?: Comment[];
 }
